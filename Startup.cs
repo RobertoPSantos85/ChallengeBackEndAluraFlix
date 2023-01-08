@@ -1,4 +1,5 @@
 using ChallengeBackEndAluraFlix.Data;
+using ChallengeBackEndAluraFlix.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,7 +30,9 @@ namespace ChallengeBackEndAluraFlix
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddDbContext<VideoContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("SqlConnection")));
+            services.AddDbContext<VideoContext>(opts => opts.UseLazyLoadingProxies().UseSqlServer(Configuration.GetConnectionString("SqlConnection")));
+            services.AddScoped<CategoriasService, CategoriasService>();
+            services.AddScoped<VideoService, VideoService>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

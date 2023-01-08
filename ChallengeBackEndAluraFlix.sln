@@ -3,7 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32929.386
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChallengeBackEndAluraFlix", "ChallengeBackEndAluraFlix.csproj", "{B8C6E919-2A79-4EC7-8743-21D0867FE736}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChallengeBackEndAluraFlix", "ChallengeBackEndAluraFlix.csproj", "{B8C6E919-2A79-4EC7-8743-21D0867FE736}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{48EF5A21-1925-4E1C-8ACF-DBA28C5304C5}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AluraFlixTest", "..\AluraFlixTest\AluraFlixTest.csproj", "{27AD348F-8A60-47C8-B430-C3888D90E907}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsuariosApi", "..\UsuariosApi\UsuariosApi.csproj", "{BC803804-6C97-4CB9-B91A-3C39C049456D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +24,14 @@ Global
 		{B8C6E919-2A79-4EC7-8743-21D0867FE736}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8C6E919-2A79-4EC7-8743-21D0867FE736}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8C6E919-2A79-4EC7-8743-21D0867FE736}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27AD348F-8A60-47C8-B430-C3888D90E907}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27AD348F-8A60-47C8-B430-C3888D90E907}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27AD348F-8A60-47C8-B430-C3888D90E907}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27AD348F-8A60-47C8-B430-C3888D90E907}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC803804-6C97-4CB9-B91A-3C39C049456D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC803804-6C97-4CB9-B91A-3C39C049456D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC803804-6C97-4CB9-B91A-3C39C049456D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC803804-6C97-4CB9-B91A-3C39C049456D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
