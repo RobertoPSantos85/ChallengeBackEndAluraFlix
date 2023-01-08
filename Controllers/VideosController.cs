@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using ChallengeBackEndAluraFlix.Data;
-using ChallengeBackEndAluraFlix.Data.Dto_s;
+using ChallengeBackEndAluraFlix.Data.Dto_s.Categoria;
+using ChallengeBackEndAluraFlix.Data.Dto_s.Video;
 using ChallengeBackEndAluraFlix.Models;
+using ChallengeBackEndAluraFlix.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,42 +14,43 @@ namespace ChallengeBackEndAluraFlix.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class VideosController:ControllerBase
+    public class VideosController : ControllerBase
     {
-        private VideoContext contexto;
-        private IMapper mapa;
+        private VideoService serviceVideo;
 
-        public VideosController(VideoContext context, IMapper mapper)
+        public VideosController(VideoService _videoService)
         {
-            contexto = context;
-            mapa = mapper;
+            serviceVideo = _videoService;
         }
 
         [HttpPost]
         public IActionResult AdicionaVideo([FromBody] CreateVideoDto videoDto)
         {
-            Video video = mapa.Map<Video>(videoDto);
-            contexto.Videos.Add(video);
-            contexto.SaveChanges();
-            return CreatedAtAction(nameof(RecuperaVideoPorId), new { Id = video.Id }, video);
+            ReadVideoDto readDto = serviceVideo.AdicionaVideo(videoDto);
+            
+            return CreatedAtAction(nameof(RecuperaVideoPorId), new { Id = readDto.videoId }, readDto);
 
         }
 
         [HttpGet]
-        public IEnumerable<Video> RecuperaVideos()
+        public IActionResult RecuperaVideos([FromQuery] string titulo = null)
         {
-            return contexto.Videos;
+            List<ReadVideoDto> readDto = serviceVideo.RecuperaVideos(titulo);
+            if(readDto != null)
+            {
+                return Ok(readDto);
+            }
+            
+            return NotFound();
         }
 
         [HttpGet("{id}")]
         public IActionResult RecuperaVideoPorId(int id)
         {
-            Video video = contexto.Videos.FirstOrDefault(videos => videos.Id == id);
-            if(video != null)
+            ReadVideoDto readDto = serviceVideo.RecuperaVideoPorId(id);
+            if(readDto != null)
             {
-                ReadVideoDto videoDto = mapa.Map<ReadVideoDto>(video);             
-
-                return Ok(video);
+                return Ok(readDto);
             }
             return NotFound();
         }
@@ -55,27 +58,24 @@ namespace ChallengeBackEndAluraFlix.Controllers
         [HttpPut("{id}")]
         public IActionResult AtualizaVideo(int id, [FromBody] UpDateVideoDto novovideoDto)
         {
-            Video video = contexto.Videos.FirstOrDefault(videos => videos.Id == id);
-            if (video == null)
+            ReadVideoDto readDto = serviceVideo.AtualizaVideo(id, novovideoDto);
+            if(readDto != null)
             {
-                return NotFound();
+                return Ok("O video foi atualizado com sucesso.");
             }
-            mapa.Map(novovideoDto, video);
-            contexto.SaveChanges();
             return NoContent();
         }
 
         [HttpDelete("{id}")]
         public IActionResult DeletaVideo(int id)
         {
-            Video video = contexto.Videos.FirstOrDefault(videos => videos.Id == id);
-            if (video == null)
+            ReadVideoDto readDto = serviceVideo.DeletaVideo(id);
+            if(readDto != null)
             {
-                return NotFound();
+                return Ok("O video foi deletado com sucesso.");
             }
-            contexto.Remove(video);
-            contexto.SaveChanges();
             return NoContent();
         }
+
     }
 }

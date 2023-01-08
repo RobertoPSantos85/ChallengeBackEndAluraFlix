@@ -3,14 +3,16 @@ using ChallengeBackEndAluraFlix.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ChallengeBackEndAluraFlix.Migrations
 {
     [DbContext(typeof(VideoContext))]
-    partial class VideoContextModelSnapshot : ModelSnapshot
+    [Migration("20221112234404_Relação categoria-video")]
+    partial class Relaçãocategoriavideo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

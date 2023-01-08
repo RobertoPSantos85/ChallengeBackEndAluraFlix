@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using ChallengeBackEndAluraFlix.Data.Dto_s;
+using ChallengeBackEndAluraFlix.Data.Dto_s.Video;
 using ChallengeBackEndAluraFlix.Models;
 using System;
 using System.Collections.Generic;
